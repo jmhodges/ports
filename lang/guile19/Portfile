@@ -1,0 +1,66 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+# $Id: Portfile 53478 2009-07-06 18:00:29Z devans@macports.org $
+
+PortSystem 1.0
+
+name		guile19
+version		1.9.1
+categories	lang
+maintainers	nomaintainer
+platforms	darwin
+
+description	GNU's Ubiquitous Intelligent Language for Extension (guile)
+long_description	\
+		Guile is an interpreter for the Scheme programming	\
+		language, packaged for use in a wide variety of		\
+		environments. Guile implements Scheme as described in	\
+		the Revised^5 Report on the Algorithmic Language Scheme	\
+		(usually known as R5RS), providing clean and general	\
+		data and control structures.				\
+									\
+		Guile goes beyond the rather austere language presented	\
+		in R5RS, extending it with a module system, full access	\
+		to POSIX system calls, networking support, multiple	\
+		threads, dynamic linking, a foreign function call	\
+		interface, powerful string processing, and many other	\
+		features needed for programming in the real world.
+
+#user_notes	You may need to set the environment variable		\
+#		DYLD_LIBRARY_PATH to ${prefix}/lib (or wherever		\
+#		the guile libraries have been installed) if you want	\
+#		to load guile modules from an application linked with	\
+#		libguile.  This should only apply to developers using	\
+#		guile as an extension language.
+
+distname        guile-${version}
+homepage	http://www.gnu.org/software/guile/guile.html
+master_sites	ftp://alpha.gnu.org/pub/gnu/guile/
+
+checksums       sha1    d6dff7936e0428639eee0f46c34c4b14a8688e3f
+
+
+depends_lib	port:readline \
+                port:gettext \
+                port:libiconv \
+                port:libtool \
+                port:gmp   \
+                port:libunistring
+
+configure.args	CPPFLAGS="-I${prefix}/include"		\
+		LDFLAGS="-L${prefix}/lib"		\
+		--infodir="${prefix}/share/info"	\
+		--mandir="${prefix}/share/man"		\
+        --program-suffix=1.9                \
+		--enable-regex
+
+platform darwin 6 {
+		depends_lib-append	port:dlcompat
+	}
+
+#post-destroot	{
+#		  file delete ${destroot}${prefix}/share/${name}/1.6/ice-9/and-let\*.scm
+#		}
+
+livecheck.check regex
+livecheck.url   "http://alpha.gnu.org/pub/gnu/guile/?C=N;O=D"
+livecheck.regex "${name}-(\\d+(?:\\.\\d+)*)${extract.suffix}"

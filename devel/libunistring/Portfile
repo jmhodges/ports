@@ -1,0 +1,42 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+# $Id: Portfile 53478 2009-07-06 18:00:29Z devans@macports.org $
+
+PortSystem 1.0
+
+name		libunistring
+version		0.9
+categories	devel
+maintainers	nomaintainer
+platforms	darwin
+
+description	This library implements Unicode strings
+
+long_description  \
+        This library implements Unicode strings (in three \
+		flavours: UTF-8 strings, UTF-16 strings, UTF-32 strings), \
+		together with functions for Unicode charactets (character \
+		names, classifications, properties) and functions for string \
+		processing (formatted output, width, word breaks, line breaks, \
+		normalization, case folding, regular expressions).
+
+#user_notes	You may need to set the environment variable		\
+#		DYLD_LIBRARY_PATH to ${prefix}/lib (or wherever		\
+#		the guile libraries have been installed) if you want	\
+#		to load guile modules from an application linked with	\
+#		libguile.  This should only apply to developers using	\
+#		guile as an extension language.
+
+distname        libunistring-${version}
+homepage	http://savannah.gnu.org/projects/libunistring
+master_sites	ftp://ftp.gnu.org/gnu/libunistring/
+
+checksums        sha1     59dbef8cfa983a549bf6b2b01e9279ec1fc4e26f
+
+configure.args	CPPFLAGS="-I${prefix}/include"		\
+		LDFLAGS="-L${prefix}/lib"		\
+		--infodir="${prefix}/share/info"	\
+		--mandir="${prefix}/share/man"		\
+
+livecheck.check regex
+livecheck.url   "http://ftp.gnu.org/pub/gnu/guile/?C=N;O=D"
+livecheck.regex "${name}-(\\d+(?:\\.\\d+)*)${extract.suffix}"
