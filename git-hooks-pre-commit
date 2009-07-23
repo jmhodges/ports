@@ -1,0 +1,4 @@
+#!/bin/sh
+
+portindex
+git add PortIndex
