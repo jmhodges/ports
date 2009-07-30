@@ -7,7 +7,7 @@ been adding to my system.
 If you check this repo out as, say, `/Users/jmh/ports`, and you want
 to add it to MacPorts you would just have to add the line
 
-    file:///Users/jmh/ports/ [default]
+    file:///Users/jmh/ports/
 
 to the the file `/opt/local/etc/macports/sources.conf`. This line
 should go above the `rsync://` line already there. This allows you to
