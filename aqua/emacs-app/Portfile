@@ -20,7 +20,7 @@ long_description	GNU Emacs is a self-documenting, customizable,      \
 
 platforms	darwin
 homepage	http://emacs-app.sourceforge.net/
-master_sites	sourceforge
+master_sites	ftp://ftp.gnu.org/gnu/emacs/
 distname	emacs-${version}
 extract.suffix	.tar.bz2
 use_bzip2	yes
