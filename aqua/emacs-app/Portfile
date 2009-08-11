@@ -27,17 +27,8 @@ use_bzip2	yes
 checksums	md5 17f7f0ba68a0432d58fa69d05a2225be \
 		sha1 5f2d5dfcc17e7627ea752f675c605fe37c9c145c
 
-#depends_build	port:pkgconfig \
-#		port:texinfo
 depends_lib     port:ncurses
 use_parallel_build      yes
-
-destroot {
-        system "cd ${worksrcpath} && make install"
-        xinstall -m 755 -d ${destroot}${applications_dir}
-        file copy ${worksrcpath}/nextstep/Emacs.app \
-                ${destroot}${applications_dir}
-}
 
 configure.args	--with-ns --without-x
 
