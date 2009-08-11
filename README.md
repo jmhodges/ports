@@ -1,20 +1,20 @@
-Local Ports
-=
+# Local Ports
 
 I'm running MacPorts on my OS X box. These are some Portfiles I've
 been adding to my system.
 
-If you check this repo out as, say, `/Users/jmh/ports`, and you want
-to add it to MacPorts you would just have to add the line
+## Installation
 
-    file:///Users/jmh/ports/
+    $ rake
 
-to the the file `/opt/local/etc/macports/sources.conf`. This line
-should go above the `rsync://` line already there. This allows you to
-override ports in the remote repository with your local one.
+This will generate the PortIndex, install a new MacPorts source
+pointing at this directory, and set up a Git post-commit hook to
+regenerate the PortIndex any time you commit Portfile changes.
 
-And then you're done. Now you can `sudo port install guile19` and all sorts
-of goodies.
+Now you can `sudo port install guile19` and all sorts of goodies. For a
+list of available local ports, try `rake list`. To manually update the
+PortIndex (or to fix the Git hook, or the sources list), just run
+`rake` again.
 
 Fork and add your own.
 
