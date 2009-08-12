@@ -17,7 +17,3 @@ PortIndex (or to fix the Git hook, or the sources list), just run
 `rake` again.
 
 Fork and add your own.
-
-(P.S. if you do fork, be sure to run `portindex` in the same directory
-as this README.md when you change something. Alternatively, move
-`git-hooks-pre-commit` to `.git/hooks/pre-commit` and make sure it's executable.)
